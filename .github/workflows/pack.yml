@@ -29,6 +29,12 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Zip files [linux]
+        run: zip -r dist/linux.zip dist/cli-linux
+
+      - name: Zip files [win]
+        run: zip -r dist/windows.zip dist/cli-win.exe
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -46,9 +52,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dist/cli-win.exe
-          asset_name: cli-win.exe
-          asset_content_type: application/octet-stream
+          asset_path: ./dist/windows.zip
+          asset_name: windows.zip
+          asset_content_type: application/zip
 
       - name: Upload Release Asset [linux]
         uses: actions/upload-release-asset@v1
@@ -56,6 +62,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dist/cli-linux
-          asset_name: cli-linux
-          asset_content_type: application/octet-stream
+          asset_path: ./dist/linux.zip
+          asset_name: linux.zip
+          asset_content_type: application/zip

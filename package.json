@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "pkg -t latest-linux,latest-win index.js -o ./dist/cli"
+    "build": "pkg -C GZip -t latest-linux,latest-win index.js -o ./dist/cli"
   },
   "dependencies": {
     "pkg": "^5.8.1"
