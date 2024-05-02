@@ -1,8 +1,11 @@
 {
   "scripts": {
-    "build": "pkg -t latest-linux,latest-win index.js -o ./dist/cli"
+    "build": "npm run build:ts && npm run build:cli",
+    "build:ts": "tsc index.ts --outFile index.js",
+    "build:cli": "pkg -t latest-linux,latest-win,latest-macos index.js -o ./dist/cli"
   },
   "dependencies": {
-    "pkg": "^5.8.1"
+    "pkg": "^5.8.1",
+    "typescript": "^5.4.5"
   }
 }
